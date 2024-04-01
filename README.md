@@ -1,4 +1,4 @@
-# NameEntityRecoginition
+# NameEntityRecognition
 
 
 ## Workflows
