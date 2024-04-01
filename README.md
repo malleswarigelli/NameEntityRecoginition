@@ -1,5 +1,5 @@
 # NameEntityRecognition
-
+NLP Token classification task using PyTorch Huggingfacce BERT library
 
 ## Workflows
 
@@ -27,6 +27,10 @@ git commit -m "Updated"
 git push origin main
 ```
 
+# install pytorch for cpu
+```bash
+pip install torch --extra-index-url https://download.pytorch.org/whl/cpu
+```
 
 ## GCP Configuration
 
