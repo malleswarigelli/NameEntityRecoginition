@@ -25,6 +25,9 @@ list_of_files = [
     f"{project_name}/pipeline/__init__.py",
     f"{project_name}/pipeline/train_pipeline.py",
     f"{project_name}/pipeline/prediction_pipeline.py",
+    f"{project_name}/utils/__init__.py",
+    f"{project_name}/utils/utils.py",
+    
     "app.py",
     "train.py",
     "requirements.txt",
