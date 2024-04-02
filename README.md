@@ -1,5 +1,5 @@
 # NameEntityRecognition
-NER: DL NLP Token classification task using PyTorch Huggingfacce BERT library
+NER: DL NLP Token classification task using PyTorch BERT library (dslim/bert-base-NER) from Huggingfacce
 
 ## Workflows
 
@@ -27,7 +27,7 @@ git commit -m "Updated"
 git push origin main
 ```
 
-# install pytorch for cpu
+# install pytorch for cpu (install this for every project)
 ```bash
 pip install torch --extra-index-url https://download.pytorch.org/whl/cpu
 ```
@@ -35,9 +35,10 @@ pip install torch --extra-index-url https://download.pytorch.org/whl/cpu
 ## GCP Configuration
 
 ```bash
+# create GCP account
 # Gcloud cli download link: https://cloud.google.com/sdk/docs/install#windows
 
-gcloud init
+gcloud init # worked with cmd but not with bash
 ```
 
 
