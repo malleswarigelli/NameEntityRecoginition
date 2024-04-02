@@ -1,5 +1,5 @@
 # NameEntityRecognition
-NLP Token classification task using PyTorch Huggingfacce BERT library
+NER: DL NLP Token classification task using PyTorch Huggingfacce BERT library
 
 ## Workflows
 
@@ -44,11 +44,11 @@ gcloud init
 ## How to run?
 
 ```bash
-conda create -n nerproj python=3.8 -y
+conda create -n nerproject python=3.8 -y
 ```
 
 ```bash
-conda activate nerproj
+conda activate nerproject
 ```
 
 ```bash
