@@ -1,5 +1,8 @@
 # NameEntityRecognition
-NER: DL NLP Token classification task using PyTorch BERT library (dslim/bert-base-NER) from Huggingfacce
+
+- Build end to end DL pipeline by implementing BERT for Named Entity Recognition (NER) and deploy to google cloud platform. 
+- This means that we have trained BERT model to predict the IOB tagging of a custom text or a custom sentence in a token level (NLP Token classification task)
+- NER is the process of identifying and classifying named entities into predefined entity categories.
 
 ## Workflows
 
