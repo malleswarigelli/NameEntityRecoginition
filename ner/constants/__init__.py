@@ -14,4 +14,4 @@ GCP_DATA_FILE_NAME = "archive.zip"
 CSV_DATA_FILE_NAME = "ner.csv"
 GCP_MODEL_NAME = "model.pt"
 
-DATA_INGESTION_ARTIFACTS_DIR = "DataIngestionArtifacts"
+DATA_INGESTION_DIR_NAME: str = "data_ingestion"
