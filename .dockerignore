@@ -1,0 +1,7 @@
+notebooks
+data
+loaded
+logs
+artifacts/*
+tips.txt
+train.py
