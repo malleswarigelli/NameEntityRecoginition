@@ -42,20 +42,20 @@ class DataIngestion:
         except Exception as e:
             raise NerException(e,sys)
     
-    def unzip_data(self, input_file_path:str, output_file_path:str)-> None:
+    def extract_data(self, input_file_path:str, output_file_path:str)-> None:
         """
-        Method Name :   unzip_data
+        Method Name :   extract_data
         Description :   This method unzips data to csv file
         
         Output      :   csv data is returned as artifact of data ingestion components
         On Failure  :   Write an exception log and then raise an exception
         """
-        logging.info("Entered get_data_from_gcp method of DataIngestion class")
+        logging.info("Entered extract_data method of DataIngestion class")
         try:
             #loading .zip file and extract all content
             with ZipFile(input_file_path, "r") as zipobj:
                 zipobj.extractall(path=output_file_path)
-            logging.info("Exited unzip_data method of DataIngestion class")
+            logging.info("Exited extract_data method of DataIngestion class")
             
         except Exception as e:
             raise NerException(e,sys)
@@ -82,7 +82,7 @@ class DataIngestion:
             logging.info(f"Got the file from Google cloud storage. Filename {os.path.basename(self.data_ingestion_config.gcp_data_file_path)}")
             
             # unzip data
-            self.unzip_data(
+            self.extract_data(
                             input_file_path=self.data_ingestion_config.gcp_data_file_path, 
                             output_file_path=self.data_ingestion_config.output_data_file_path)
             logging.info(f"Extracted data from {os.path.basename(self.data_ingestion_config.gcp_data_file_path)} into {os.path.basename(self.data_ingestion_config.csv_data_file_path)}")

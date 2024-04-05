@@ -15,10 +15,10 @@ CSV_DATA_FILE_NAME = "ner.csv"
 GCP_MODEL_NAME = "model.pt"
 
 # data_ingestion
-DATA_INGESTION_DIR_NAME: str = "data_ingestion"
+DATA_INGESTION_ARTIFACTS_DIR = "DataIngestionArtifacts"
 
 # data_transformation constants
-DATA_TRANSFORMATION_DIR_NAME: str = "data_transformation"
+DATA_TRANSFORMATION_ARTIFACTS_DIR = "DataTransformationArtifacts"
 LABELS_TO_IDS_FILE_NAME = "labels_to_ids.pkl"
 IDS_TO_LABELS_FILE_NAME = "ids_to_labels.pkl"
 DF_TRAIN_FILE_NAME = "df_train.pkl"
