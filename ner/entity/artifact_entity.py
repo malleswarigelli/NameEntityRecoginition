@@ -22,6 +22,6 @@ class DataTransformationArtifact:
     
 # Model Training Artifacts
 @dataclass
-class ModelTrainerArtifacts:
+class ModelTrainerArtifact:
     bert_model_train_path:str
     tokenizer_file_path:str

@@ -7,22 +7,27 @@ import torch
 from torch.optim import SGD
 from torch.utils.data import DataLoader
 from tqdm import tqdm
-from transformers import BertTokenizerFast
-from model.bert import BertModel
+from transformers import BertTokenizerFast 
+# from model.bert import BertModel
+from transformers import BertModel
+
 
 from ner.configuration.gcloud import GCloud
 from ner.constants import *
 from ner.entity.config_entity import ModelTrainerConfig
-from ner.entity.artifact_entity import DataTransformationArtifact, ModelTrainerArtifacts
+from ner.entity.artifact_entity import DataTransformationArtifact, ModelTrainerArtifact
 from ner.logger import logging
 from ner.exception import NerException
 from ner.utils.utils import MainUtils
 
 class DataSequence(torch.utils.data.Dataset):
+    """
+    PyTorch Dataset class to organize and load data for training and inference tasks
+    """
     def __init__(self, df, tokenizer, labels_to_ids):
 
         lb = [i.split() for i in df["labels"].values.tolist()]
-        txt = df["text"].values.tolist()
+        txt = df["text"].values.tolist() # list of strings ['sentence 1', 'sentense 2']
         self.texts = [
             tokenizer(
                 str(i),
@@ -99,14 +104,14 @@ class DataSequence(torch.utils.data.Dataset):
         
         
 class ModelTrainer:    
-    def __init__(self, data_transformation_artifact:DataTransformationArtifact,
+    def __init__(self, data_transformation_artifacts:DataTransformationArtifact,
                  model_trainer_config:ModelTrainerConfig) -> None:
         """
         :param model_trainer_config: configuration for model training (obj of ModelTrainerConfig class)
         :param data_transformation_artifact: artifact of DataTransformation component
         """
         try:
-            self.data_transformation_artifact= data_transformation_artifact
+            self.data_transformation_artifacts= data_transformation_artifacts
             self.model_trainer_config= model_trainer_config
             self.gcloud= GCloud() # to push some o/p files
             self.utils= MainUtils()
@@ -115,7 +120,7 @@ class ModelTrainer:
             raise NerException(e,sys)
         
         
-    def initiate_model_trainer(self,)->ModelTrainerArtifacts:
+    def initiate_model_trainer(self,)->ModelTrainerArtifact:
         """
         Method Name :   initiate_model_trainer
         Description :   This function initiates a model trainer steps
@@ -127,9 +132,12 @@ class ModelTrainer:
         logging.info(f"Entered initiate_model_trainer method of ModelTrainer")
         try:
             logging.info("Entered the initiate_model_training method of Model training class")
-            os.makedirs(self.model_trainer_config.model_training_artifacts_dir, exist_ok=True)
-            logging.info(f"Created {os.path.basename(self.model_trainer_config.model_training_artifacts_dir)} directory.")
-            
+            os.makedirs(
+                self.model_trainer_config.model_training_artifacts_dir, exist_ok=True
+            )
+            logging.info(
+                f"Created {os.path.basename(self.model_trainer_config.model_training_artifacts_dir)} directory."
+            )
             tokenizer = BertTokenizerFast.from_pretrained("bert-base-cased")
             logging.info("Downloaded tokenizer")
 
@@ -137,27 +145,49 @@ class ModelTrainer:
             epochs = EPOCHS
             batch_size = BATCH_SIZE
 
-            unique_labels = self.utils.load_pickle_file(filepath=self.data_transformation_artifacts.unique_labels_path)
-            logging.info(f"Loaded {os.path.basename(self.data_transformation_artifacts.unique_labels_path)} pickle file from artifacts directory.")
+            unique_labels = self.utils.load_pickle_file(
+                filepath=self.data_transformation_artifacts.unique_labels_path
+            )
+            logging.info(
+                f"Loaded {os.path.basename(self.data_transformation_artifacts.unique_labels_path)} pickle file from artifacts directory."
+            )
 
-            df_train = self.utils.load_pickle_file(filepath=self.data_transformation_artifacts.df_train_path)
-            logging.info(f"Loaded {os.path.basename(self.data_transformation_artifacts.df_train_path)} pickle file from artifacts directory.")
+            df_train = self.utils.load_pickle_file(
+                filepath=self.data_transformation_artifacts.df_train_path
+            )
+            logging.info(
+                f"Loaded {os.path.basename(self.data_transformation_artifacts.df_train_path)} pickle file from artifacts directory."
+            )
 
-            df_val = self.utils.load_pickle_file(filepath=self.data_transformation_artifacts.df_val_path)
-            logging.info(f"Loaded {os.path.basename(self.data_transformation_artifacts.df_val_path)} pickle file from artifacts directory.")
+            df_val = self.utils.load_pickle_file(
+                filepath=self.data_transformation_artifacts.df_val_path
+            )
+            logging.info(
+                f"Loaded {os.path.basename(self.data_transformation_artifacts.df_val_path)} pickle file from artifacts directory."
+            )
 
-            labels_to_ids = self.utils.load_pickle_file(filepath=self.data_transformation_artifacts.labels_to_ids_path)
-            logging.info(f"Loaded {os.path.basename(self.data_transformation_artifacts.labels_to_ids_path)} pickle file from artifacts directory.")
+            labels_to_ids = self.utils.load_pickle_file(
+                filepath=self.data_transformation_artifacts.labels_to_ids_path
+            )
+            logging.info(
+                f"Loaded {os.path.basename(self.data_transformation_artifacts.labels_to_ids_path)} pickle file from artifacts directory."
+            )
 
             model = BertModel(unique_labels=unique_labels)
             logging.info("created model class for bert")
 
-            train_dataset = DataSequence(df=df_train, tokenizer=tokenizer, labels_to_ids=labels_to_ids)
+            train_dataset = DataSequence(
+                df=df_train, tokenizer=tokenizer, labels_to_ids=labels_to_ids
+            )
             logging.info("Created train dataset")
-            val_dataset = DataSequence(df=df_val, tokenizer=tokenizer, labels_to_ids=labels_to_ids)
+            val_dataset = DataSequence(
+                df=df_val, tokenizer=tokenizer, labels_to_ids=labels_to_ids
+            )
             logging.info("created val dataset")
 
-            train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+            train_dataloader = DataLoader(
+                train_dataset, batch_size=batch_size, shuffle=True
+            )
             val_dataloader = DataLoader(val_dataset, batch_size=batch_size)
             logging.info("created train and val dataloader")
 
@@ -226,13 +256,22 @@ class ModelTrainer:
                 val_accuracy = total_acc_val / len(df_val)
                 val_loss = total_loss_val / len(df_val)
 
-                print(f"Epochs: {epoch_num + 1} | Loss: {total_loss_train / len(df_train): .3f} | Accuracy: {total_acc_train / len(df_train): .3f} | Val_Loss: {val_loss: .3f} | Accuracy: {val_accuracy: .3f}")
+                print(
+                    f"Epochs: {epoch_num + 1} | Loss: {total_loss_train / len(df_train): .3f} | Accuracy: {total_acc_train / len(df_train): .3f} | Val_Loss: {val_loss: .3f} | Accuracy: {val_accuracy: .3f}"
+                )
 
             torch.save(model, self.model_trainer_config.bert_model_instance_path)
-            logging.info(f"Model saved to artifacts directory. File name - {os.path.basename(self.model_trainer_config.bert_model_instance_path)}")
+            logging.info(
+                f"Model saved to artifacts directory. File name - {os.path.basename(self.model_trainer_config.bert_model_instance_path)}"
+            )
 
-            self.utils.dump_pickle_file(output_filepath=self.model_trainer_config.tokenizer_file_path,data=tokenizer,)
-            logging.info(f"Dumped pickle file to the artifacts directory. File name - {os.path.basename(self.model_trainer_config.tokenizer_file_path)}")
+            self.utils.dump_pickle_file(
+                output_filepath=self.model_trainer_config.tokenizer_file_path,
+                data=tokenizer,
+            )
+            logging.info(
+                f"Dumped pickle file to the artifacts directory. File name - {os.path.basename(self.model_trainer_config.tokenizer_file_path)}"
+            )
 
             self.gcloud.sync_folder_to_gcloud(
                 gcp_bucket_url=BUCKET_NAME,
@@ -243,13 +282,13 @@ class ModelTrainer:
                 f"Uploaded pickle file to the Google storage. File name - {os.path.basename(self.model_trainer_config.tokenizer_file_path)}"
             )
 
-            model_training_artifacts = ModelTrainerArtifacts(
+            model_trainer_artifact = ModelTrainerArtifact(
                 bert_model_path=self.model_trainer_config.bert_model_instance_path,
                 tokenizer_file_path=self.model_trainer_config.tokenizer_file_path,
             )
 
             logging.info("Exited the initiate_model_training method of Model training class")
-            return model_training_artifacts
+            return model_trainer_artifact
 
         except Exception as e:
             raise NerException(e, sys) from e

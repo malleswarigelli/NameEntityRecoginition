@@ -15,10 +15,10 @@ CSV_DATA_FILE_NAME = "ner.csv"
 GCP_MODEL_NAME = "model.pt"
 
 # data_ingestion
-DATA_INGESTION_ARTIFACTS_DIR = "DataIngestionArtifacts"
+DATA_INGESTION_ARTIFACTS_DIR = "DataIngestion"
 
 # data_transformation constants
-DATA_TRANSFORMATION_ARTIFACTS_DIR = "DataTransformationArtifacts"
+DATA_TRANSFORMATION_ARTIFACTS_DIR = "DataTransformation"
 LABELS_TO_IDS_FILE_NAME = "labels_to_ids.pkl"
 IDS_TO_LABELS_FILE_NAME = "ids_to_labels.pkl"
 DF_TRAIN_FILE_NAME = "df_train.pkl"
@@ -27,7 +27,7 @@ DF_TEST_FILE_NAME = "df_test.pkl"
 UNIQUE_LABELS_FILE_NAME = "unique_labels.pkl"
 
 # model_training constants
-MODEL_TRAINING_ARTIFACTS_DIR= "ModelTrainerArtifacts"
+MODEL_TRAINING_ARTIFACTS_DIR= "ModelTrainer"
 LEARNING_RATE= 5e-3
 EPOCHS= 1
 BATCH_SIZE= 2

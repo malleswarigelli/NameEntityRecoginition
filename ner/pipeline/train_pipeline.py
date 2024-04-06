@@ -3,7 +3,7 @@ import sys
 from ner.configuration.gcloud import GCloud
 from ner.constants import *
 from ner.entity.config_entity import DataIngestionConfig, DataTransformationConfig, ModelTrainerConfig
-from ner.entity.artifact_entity import DataIngestionArtifact, DataTransformationArtifact, ModelTrainerArtifacts
+from ner.entity.artifact_entity import DataIngestionArtifact, DataTransformationArtifact, ModelTrainerArtifact
 from ner.logger import logging
 from ner.exception import NerException
 from ner.components.data_ingestion import DataIngestion
@@ -56,14 +56,14 @@ class TrainingPipeline:
         except Exception as e:
             raise NerException(e, sys) from e  
         
-    def start_model_trainer(self, data_transformation_artifact:DataTransformationArtifact)-> ModelTrainerArtifacts:
+    def start_model_trainer(self, data_transformation_artifacts:DataTransformationArtifact)-> ModelTrainerArtifact:
         """
         This method of TrainPipeline class is responsible for starting model trainer component
-        returns ModelTrainerArtifacts
+        returns ModelTrainerArtifact
         """
         logging.info("Entered the start_model_trainer method of TrainPipeline class")
         try:
-            model_trainer_config= ModelTrainer(data_transformation_artifact= data_transformation_artifact,
+            model_trainer_config= ModelTrainer(data_transformation_artifacts= data_transformation_artifacts,
                                                model_trainer_config= self.model_trainer_config)
             model_trainer_artifact= model_trainer_config.initiate_model_trainer()
             logging.info("Exited the start_model_trainer method of TrainPipeline class")
@@ -82,7 +82,7 @@ class TrainingPipeline:
         try:
             data_ingestion_artifact = self.start_data_ingestion()
             data_transformation_artifact= self.start_data_transformation(data_ingestion_artifact= data_ingestion_artifact)
-            model_trainer_artifact= self.start_model_trainer(data_transformation_artifact= data_transformation_artifact)
+            model_trainer_artifact= self.start_model_trainer(data_transformation_artifacts= data_transformation_artifact)
             
         except Exception as e:
             raise NerException(e, sys) from e

@@ -5,3 +5,4 @@ logs
 artifacts/*
 tips.txt
 train.py
+test.ipynb
