@@ -127,9 +127,8 @@ class ModelTrainer:
         
         Output      :   Returns model trainer artifact
         On Failure  :   Write an exception log and then raise an exception
+        
         """
-              
-        logging.info(f"Entered initiate_model_trainer method of ModelTrainer")
         try:
             logging.info("Entered the initiate_model_training method of Model training class")
             os.makedirs(

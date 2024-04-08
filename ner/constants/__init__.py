@@ -6,16 +6,17 @@ TIMESTAMP: str = datetime.now().strftime("%m_%d_%Y_%H_%M_%S")
 ARTIFACTS_DIR = os.path.join("artifacts", TIMESTAMP)
 LOGS_DIR = "logs"
 LOGS_FILE_NAME = "ner.log"
+
+
 MODELS_DIR = "models"
 BEST_MODEL_DIR = "best_model"
 
-BUCKET_NAME = "ner-using-bert-1"
-GCP_DATA_FILE_NAME = "archive.zip"
-CSV_DATA_FILE_NAME = "ner.csv"
-GCP_MODEL_NAME = "model.pt"
+
 
 # data_ingestion
 DATA_INGESTION_ARTIFACTS_DIR = "DataIngestion"
+GCP_DATA_FILE_NAME = "archive.zip"
+CSV_DATA_FILE_NAME = "ner.csv"
 
 # data_transformation constants
 DATA_TRANSFORMATION_ARTIFACTS_DIR = "DataTransformation"
@@ -33,3 +34,12 @@ EPOCHS= 1
 BATCH_SIZE= 2
 BERT_MODEL_INSTANCE_NAME= "bert_model_instance.pt"
 TOKENIZER_FILE_NAME="tokenizer.pkl"
+
+# model_evaluation constants
+MODEL_EVALUATION_ARTIFACTS_DIR = "ModelEvaluation"
+BUCKET_NAME = "ner-using-bert-1"
+GCP_MODEL_NAME = "model.pt"
+
+
+APP_HOST = "0.0.0.0"
+APP_PORT = 8080
