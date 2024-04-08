@@ -130,7 +130,7 @@ class DataTransformation:
             unique_labels_pkl= self.utils.dump_pickle_file(output_filepath=self.data_transformation_config.unique_labels_path, data=unique_labels)
             logging.info(f"Saved the unique labels pickle file to Artifacts directory. File name - {os.path.basename(self.data_transformation_config.unique_labels_path)}")
 
-            data_transformation_artifacts = DataTransformationArtifact(
+            data_transformation_artifact = DataTransformationArtifact(
                 labels_to_ids_path= labels_to_ids_pkl,
                 ids_to_labels_path= ids_to_labels_pkl,
                 df_train_path= df_train_pkl,
@@ -139,7 +139,7 @@ class DataTransformation:
                 unique_labels_path= unique_labels_pkl,
             )
             logging.info("Exited the initiate_data_transformation method of Data transformation class")
-            return data_transformation_artifacts
+            return data_transformation_artifact
 
         except Exception as e:
             raise NerException(e, sys) from e

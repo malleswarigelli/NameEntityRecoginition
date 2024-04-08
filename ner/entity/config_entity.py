@@ -24,14 +24,14 @@ class DataTransformationConfig:
     
 @dataclass
 class ModelTrainerConfig:
-    model_training_artifacts_dir= os.path.join(ARTIFACTS_DIR, MODEL_TRAINING_ARTIFACTS_DIR) # ModelTrainer
-    bert_model_instance_path= os.path.join(model_training_artifacts_dir, BERT_MODEL_INSTANCE_NAME) #bert_model_instance.pt
-    tokenizer_file_path= os.path.join(model_training_artifacts_dir, TOKENIZER_FILE_NAME) #tokenizer.pkl"
-    tokenizer_file_gcp_path= os.path.join(model_training_artifacts_dir) # ModelTrainer
+    model_training_dir= os.path.join(ARTIFACTS_DIR, MODEL_TRAINING_ARTIFACTS_DIR) # ModelTrainer
+    bert_model_instance_path= os.path.join(model_training_dir, BERT_MODEL_INSTANCE_NAME) #bert_model_instance.pt
+    tokenizer_file_path= os.path.join(model_training_dir, TOKENIZER_FILE_NAME) #tokenizer.pkl"
+    tokenizer_file_gcp_path= os.path.join(model_training_dir) # ModelTrainer
     
 @dataclass
 class ModelEvaluationConfig:
-    model_training_artifacts_dir= os.path.join(ARTIFACTS_DIR, MODEL_EVALUATION_ARTIFACTS_DIR) #ModelEvaluation dir
+    model_evaluation_dir= os.path.join(ARTIFACTS_DIR, MODEL_EVALUATION_ARTIFACTS_DIR) #ModelEvaluation dir
     gcp_model_path:str= os.getcwd() # get model to current working directory
     gcp_local_path:str= GCP_MODEL_NAME # "model.pt"
     

@@ -7,7 +7,8 @@ ARTIFACTS_DIR = os.path.join("artifacts", TIMESTAMP)
 LOGS_DIR = "logs"
 LOGS_FILE_NAME = "ner.log"
 
-
+BUCKET_NAME = "ner-using-bert-1"
+GCP_MODEL_NAME = "model.pt"
 MODELS_DIR = "models"
 BEST_MODEL_DIR = "best_model"
 
@@ -37,8 +38,6 @@ TOKENIZER_FILE_NAME="tokenizer.pkl"
 
 # model_evaluation constants
 MODEL_EVALUATION_ARTIFACTS_DIR = "ModelEvaluation"
-BUCKET_NAME = "ner-using-bert-1"
-GCP_MODEL_NAME = "model.pt"
 
 
 APP_HOST = "0.0.0.0"

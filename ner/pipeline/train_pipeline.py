@@ -8,7 +8,7 @@ from ner.logger import logging
 from ner.exception import NerException
 from ner.components.data_ingestion import DataIngestion
 from ner.components.data_transformation import DataTransformation
-from ner.components.model_trainer import ModelTrainer
+from ner.components.model_trainer import ModelTraining
 from ner.components.model_evaluation import ModelEvaluation
 from ner.components.model_pusher import ModelPusher
 
@@ -60,16 +60,16 @@ class TrainingPipeline:
         except Exception as e:
             raise NerException(e, sys) from e  
         
-    def start_model_trainer(self, data_transformation_artifacts:DataTransformationArtifact)-> ModelTrainerArtifact:
+    def start_model_trainer(self, data_transformation_artifact:DataTransformationArtifact)-> ModelTrainerArtifact:
         """
         This method of TrainPipeline class is responsible for starting model trainer component
         returns ModelTrainerArtifact
         """
         logging.info("Entered the start_model_trainer method of TrainPipeline class")
         try:
-            model_trainer_config= ModelTrainer(data_transformation_artifacts= data_transformation_artifacts,
+            model_trainer_config= ModelTraining(data_transformation_artifact= data_transformation_artifact,
                                                model_trainer_config= self.model_trainer_config)
-            model_trainer_artifact= model_trainer_config.initiate_model_trainer()
+            model_trainer_artifact= model_trainer_config.initiate_model_training()
             logging.info("Exited the start_model_trainer method of TrainPipeline class")
             
             return model_trainer_artifact
@@ -77,7 +77,7 @@ class TrainingPipeline:
         except Exception as e:
             raise NerException(e, sys) from e 
         
-    def start_model_evaluation(self, data_transformation_artifacts:DataTransformationArtifact,
+    def start_model_evaluation(self, data_transformation_artifact:DataTransformationArtifact,
                                model_trainer_artifact:ModelTrainerArtifact)-> ModelEvaluationArtifacts:
         """
         This method of TrainPipeline class is responsible for starting model evaluation component
@@ -85,7 +85,7 @@ class TrainingPipeline:
         """
         logging.info("Entered the start_model_evaluation method of TrainPipeline class")
         try:
-            model_evaluation_config= ModelEvaluation(data_transformation_artifact= data_transformation_artifacts,
+            model_evaluation_config= ModelEvaluation(data_transformation_artifact= data_transformation_artifact,
                                                      model_trainer_artifact= model_trainer_artifact,
                                                      model_evaluation_config= self.model_evaluation_config)
             model_evaluation_artifact= model_evaluation_config.initiate_model_evaluation()
@@ -120,8 +120,8 @@ class TrainingPipeline:
         try:
             data_ingestion_artifact = self.start_data_ingestion()
             data_transformation_artifact= self.start_data_transformation(data_ingestion_artifact= data_ingestion_artifact)
-            model_trainer_artifact= self.start_model_trainer(data_transformation_artifacts= data_transformation_artifact)
-            model_evaluation_artifact= self.start_model_evaluation(data_transformation_artifacts=data_transformation_artifact, model_trainer_artifact=model_trainer_artifact)
+            model_trainer_artifact= self.start_model_trainer(data_transformation_artifact= data_transformation_artifact)
+            model_evaluation_artifact= self.start_model_evaluation(data_transformation_artifact=data_transformation_artifact, model_trainer_artifact=model_trainer_artifact)
             model_pusher_artifact= self.start_model_pusher(model_evaluation_artifact=model_evaluation_artifact)
             
         except Exception as e:
