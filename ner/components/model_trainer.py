@@ -5,8 +5,7 @@ from torch.optim import SGD
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 from transformers import BertTokenizerFast
-# from model.bert import BertModel
-from transformers import BertModel
+from model.bert import BertModel
 from ner.constants import *
 from ner.entity.artifact_entity import (
     DataTransformationArtifact,
@@ -172,7 +171,7 @@ class ModelTraining:
                 f"Loaded {os.path.basename(self.data_transformation_artifact.labels_to_ids_path)} pickle file from artifacts directory."
             )
 
-            model = BertModel(unique_labels=unique_labels)
+            model = BertModel(unique_labels= unique_labels)
             logging.info("created model class for bert")
 
             train_dataset = DataSequence(

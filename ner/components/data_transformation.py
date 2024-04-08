@@ -104,10 +104,10 @@ class DataTransformation:
             
             # we need .pkl files for ease
 
-            labels_to_ids_pkl= self.utils.dump_pickle_file(output_filepath=self.data_transformation_config.labels_to_ids_path, data=labels_to_ids)            
+            self.utils.dump_pickle_file(output_filepath=self.data_transformation_config.labels_to_ids_path, data=labels_to_ids)            
             logging.info(f"Saved the labels to ids pickle file to Artifacts directory. File name - {os.path.basename(self.data_transformation_config.labels_to_ids_path)}")
 
-            ids_to_labels_pkl= self.utils.dump_pickle_file(output_filepath=self.data_transformation_config.ids_to_labels_path,data=ids_to_labels)
+            self.utils.dump_pickle_file(output_filepath=self.data_transformation_config.ids_to_labels_path,data=ids_to_labels)
             logging.info(f"Saved the ids to labels pickle file to Artifacts directory. File name - {os.path.basename(self.data_transformation_config.ids_to_labels_path)}")
 
             # push ids_to_labels.pkl to gcloud bucket since we need for predictions
@@ -118,25 +118,25 @@ class DataTransformation:
             )
             logging.info(f"Uploaded the ids to labels pickle file to Google cloud storage. File name - {os.path.basename(self.data_transformation_config.ids_to_labels_path)}")
 
-            df_train_pkl= self.utils.dump_pickle_file(output_filepath=self.data_transformation_config.df_train_path, data=df_train)
+            self.utils.dump_pickle_file(output_filepath=self.data_transformation_config.df_train_path, data=df_train)
             logging.info(f"Saved the train df pickle file to Artifacts directory. File name - {os.path.basename(self.data_transformation_config.df_train_path)}" )
 
-            df_val_pkl= self.utils.dump_pickle_file(output_filepath=self.data_transformation_config.df_val_path, data=df_val)
+            self.utils.dump_pickle_file(output_filepath=self.data_transformation_config.df_val_path, data=df_val)
             logging.info(f"Saved the val df pickle file to Artifacts directory. File name - {os.path.basename(self.data_transformation_config.df_val_path)}")
 
-            df_test_pkl= self.utils.dump_pickle_file(output_filepath=self.data_transformation_config.df_test_path, data=df_test)
+            self.utils.dump_pickle_file(output_filepath=self.data_transformation_config.df_test_path, data=df_test)
             logging.info(f"Saved the test df pickle file to Artifacts directory. File name - {os.path.basename(self.data_transformation_config.df_test_path)}")
 
-            unique_labels_pkl= self.utils.dump_pickle_file(output_filepath=self.data_transformation_config.unique_labels_path, data=unique_labels)
+            self.utils.dump_pickle_file(output_filepath=self.data_transformation_config.unique_labels_path, data=unique_labels)
             logging.info(f"Saved the unique labels pickle file to Artifacts directory. File name - {os.path.basename(self.data_transformation_config.unique_labels_path)}")
 
             data_transformation_artifact = DataTransformationArtifact(
-                labels_to_ids_path= labels_to_ids_pkl,
-                ids_to_labels_path= ids_to_labels_pkl,
-                df_train_path= df_train_pkl,
-                df_val_path= df_val_pkl,
-                df_test_path= df_test_pkl,
-                unique_labels_path= unique_labels_pkl,
+                labels_to_ids_path= self.data_transformation_config.labels_to_ids_path,
+                ids_to_labels_path= self.data_transformation_config.ids_to_labels_path,
+                df_train_path= self.data_transformation_config.df_train_path,
+                df_val_path= self.data_transformation_config.df_val_path,
+                df_test_path= self.data_transformation_config.df_test_path,
+                unique_labels_path= self.data_transformation_config.unique_labels_path,
             )
             logging.info("Exited the initiate_data_transformation method of Data transformation class")
             return data_transformation_artifact
