@@ -9,6 +9,7 @@ LOGS_FILE_NAME = "ner.log"
 
 BUCKET_NAME = "ner-using-bert-1"
 GCP_MODEL_NAME = "model.pt"
+
 MODELS_DIR = "models"
 BEST_MODEL_DIR = "best_model"
 

@@ -40,3 +40,12 @@ class ModelPusherConfig:
     bucket_name:str= BUCKET_NAME # "ner-using-bert-1"
     model_name:str= GCP_MODEL_NAME # "model.pt"
     upload_model_path: str = os.path.join(ARTIFACTS_DIR, MODEL_TRAINING_ARTIFACTS_DIR) # artifacts/ModelTrainer
+    
+@dataclass
+class ModelPredictorConfig:
+    tokenizer_local_path:str= TOKENIZER_FILE_NAME # tokenizer.pkl"
+    ids_to_labels_local_path:str= IDS_TO_LABELS_FILE_NAME # "ids_to_labels.pkl"
+    best_model_dir:str= BEST_MODEL_DIR # "best_model"
+    best_model_from_gcp_path:str= os.path.join(BEST_MODEL_DIR) # /best_model
+    best_model_path:str= os.path.join(BEST_MODEL_DIR, GCP_MODEL_NAME) # best_model/model.pt
+    
