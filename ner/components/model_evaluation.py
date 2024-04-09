@@ -106,10 +106,7 @@ class ModelEvaluation():
               
         logging.info(f"Entered initiate_model_evaluation method of ModelEvaluation class")
         try: 
-           
-           os.makedirs(self.model_evaluation_config.model_evaluation_dir, exist_ok=True)
-           logging.info(f"Created {os.path.basename(self.model_evaluation_config.model_evaluation_dir)} directory.")
-           
+                                
            # load current trained model
            model= torch.load(self.model_trainer_artifact.bert_model_train_path)
            logging.info(f"Loaded {model} from model_trainer_artifact")
@@ -140,10 +137,12 @@ class ModelEvaluation():
            else:
                tmp_best_model_score = 0
                logging.info("GCP model is not available locally for comparison.")
-                
+           
+           
            model_evaluation_artifact = ModelEvaluationArtifacts(
-                trained_model_accuracy=trained_model_accuracy,
-                is_model_accepted=trained_model_accuracy > tmp_best_model_score)
+                trained_model_accuracy= trained_model_accuracy,
+                is_model_accepted= trained_model_accuracy > tmp_best_model_score)
+           
            
            logging.info("Exited the initiate_model_evaluation method of Model evaluation class")
            return model_evaluation_artifact
