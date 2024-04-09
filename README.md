@@ -14,7 +14,9 @@
 - Model Trainer: trained pretrained BERT transformer model on the prepared dataset. 
 - Model Evaluation: evaluated the model's performance on a test dataset and calculated metrics accuracy.
 - Model Pusher: the model with highest accuracy is pushed to GCP bucket 
-## Prediction pipeline: For user provided text data apply tokenizer for vector embedding, predict the named entity with trained BERT model from GCP bucket and classify them. 
+## Prediction pipeline: 
+- For user provided text data apply tokenizer for vector embedding, predict the named entity with trained BERT model from GCP bucket and classify them.
+  
 - WebApplication: Built FASTAPI web application
 - Deployed the pipeline to GCP virtual machine using containers Docker, GCP artifact registry, CI/CD tool: CircleCI
 
