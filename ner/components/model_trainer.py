@@ -281,7 +281,7 @@ class ModelTraining:
             )
 
             model_training_artifacts = ModelTrainerArtifact(
-                bert_model_path=self.model_trainer_config.bert_model_instance_path,
+                bert_model_train_path=self.model_trainer_config.bert_model_instance_path,
                 tokenizer_file_path=self.model_trainer_config.tokenizer_file_path,
             )
 

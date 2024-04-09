@@ -107,8 +107,8 @@ class ModelEvaluation():
         logging.info(f"Entered initiate_model_evaluation method of ModelEvaluation class")
         try: 
            
-           os.makedirs(self.model_evaluation_config.model_training_artifacts_dir, exist_ok=True)
-           logging.info(f"Created {os.path.basename(self.model_evaluation_config.model_training_artifacts_dir)} directory.")
+           os.makedirs(self.model_evaluation_config.model_evaluation_dir, exist_ok=True)
+           logging.info(f"Created {os.path.basename(self.model_evaluation_config.model_evaluation_dir)} directory.")
            
            # load current trained model
            model= torch.load(self.model_trainer_artifact.bert_model_train_path)
