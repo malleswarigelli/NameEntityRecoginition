@@ -25,7 +25,7 @@ class DataTransformationConfig:
 @dataclass
 class ModelTrainerConfig:
     model_training_dir= os.path.join(ARTIFACTS_DIR, MODEL_TRAINING_ARTIFACTS_DIR) # ModelTrainer
-    bert_model_instance_path= os.path.join(model_training_dir, BERT_MODEL_INSTANCE_NAME) #bert_model_instance.pt
+    bert_model_instance_path= os.path.join(model_training_dir, GCP_MODEL_NAME) # "model.pt"
     tokenizer_file_path= os.path.join(model_training_dir, TOKENIZER_FILE_NAME) #tokenizer.pkl"
     tokenizer_file_gcp_path= os.path.join(model_training_dir) # ModelTrainer
     

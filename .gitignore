@@ -163,3 +163,5 @@ loaded/
 artifacts/*
 logs
 test.ipynb/*
+.env
+tips for VM-machine-setup.sh

@@ -1,8 +1,23 @@
-notebooks
 data
 loaded
 logs
-artifacts/*
+artifacts
+ner_using_bert.egg-info
+build
+dist
+notebooks
+venv/
+LICENSE
+gcloud_check.py
+model.pt
+README.md
+ner.csv
+logs
+.circleci
+ids_to_labels.pkl
+tokenizer.pkl
 tips.txt
-train.py
 test.ipynb
+.env
+
+tips for VM-machine-setup.sh

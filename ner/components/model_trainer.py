@@ -258,7 +258,7 @@ class ModelTraining:
                     f"Epochs: {epoch_num + 1} | Loss: {total_loss_train / len(df_train): .3f} | Accuracy: {total_acc_train / len(df_train): .3f} | Val_Loss: {val_loss: .3f} | Accuracy: {val_accuracy: .3f}"
                 )
 
-            torch.save(model, self.model_trainer_config.bert_model_instance_path)
+            torch.save(model, self.model_trainer_config.bert_model_instance_path) # model.pt
             logging.info(
                 f"Model saved to artifacts directory. File name - {os.path.basename(self.model_trainer_config.bert_model_instance_path)}"
             )

@@ -62,3 +62,18 @@ pip install -r requirements.txt
 ```bash
 python app.py
 ```
+
+# GCP CICD Deployment with CircleCI:
+- artifact registry --> create a repository
+- change line 42,50,72,76,54 in .circleci/config.yml
+- Open circleci --> create a project
+
+
+# Set Environment variables in CircleCI
+GCLOUD_SERVICE_KEY --> service account
+
+GOOGLE_COMPUTE_ZONE = asia-south1 # select your choice
+
+GOOGLE_PROJECT_ID
+
+# Create a VM instances & setup scripts
