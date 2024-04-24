@@ -7,7 +7,8 @@ If you want to know more about BERT, I suggest the following resources:
 * the original [paper](https://arxiv.org/abs/1810.04805)
 * Jay Allamar's [blog post](http://jalammar.github.io/illustrated-bert/) as well as his [tutorial](http://jalammar.github.io/a-visual-guide-to-using-bert-for-the-first-time/)
 
-# Goal: Build an end to end pipeline for Named Entity Recognition (NER) by a pretrained Huggingface transformer, BERT and deploy to google cloud platform using Docker, CI/CD tool: CircleCI. 
+# Goal: 
+## Build an end to end pipeline for Named Entity Recognition (NER) by a pretrained Huggingface transformer, BERT and deploy to google cloud platform using Docker, CI/CD tool: CircleCI. 
 - We implemented pretrained HuggingFace Transformer, BERT model [bert-base-cased](https:huggingface.co/google-bert/bert-base-cased) to predict the IOB tagging of a custom text or a custom sentence in a token level (NLP Token classification task)
 - NER is the process of identifying and classifying named entities into predefined entity categories.
 - Project structure is made with a data science project template. This template ensured modularity, reusability, and maintainability of the code. It included modules for logging, exception handling, and utilities.
@@ -22,8 +23,10 @@ Named entity recognition (NER) uses a specific annotation scheme **[IOB-tagging]
 
 For training a DL model for NER, it requires data in IOB format. There are many annotation tools which let you create these kind of annotations automatically (such as Spacy's [Prodigy](https://prodi.gy/), [Tagtog](https://docs.tagtog.net/) or [Doccano](https://github.com/doccano/doccano)). You can also use Spacy's [biluo_tags_from_offsets](https://spacy.io/api/goldparse#biluo_tags_from_offsets) function to convert annotations at the character level to IOB format.
 
-Here, we used a NER dataset from Kaggle that is already in IOB format. One has to go to this web page, download the dataset, add to GCP bucket. You can directly unzip it, and upload the csv file to this notebook. Let's print out the first few rows of this csv file contains sentense(text), IOB tags (labels)
+- Here, we used a NER dataset from Kaggle that is already in IOB format. One has to go to this web page, download the dataset, add to GCP bucket. You can directly unzip it, and upload the csv file to this notebook. Let's print out the first few rows of this csv file contains sentense(text), IOB tags (labels)
+  
 ![data](https://github.com/malleswarigelli/NameEntityRecoginition/assets/84688050/384f6f57-d36c-41bd-9e53-0f18f3742341)
+
 - dataset (~50k rows)
 - There are 17 different category tags: {'B-art', 'B-eve', 'B-geo', 'B-gpe', 'B-nat', 'B-org', 'B-per', 'B-tim', 'I-art', 'I-eve', 'I-geo', 'I-gpe', 'I-nat', 'I-org', 'I-per', 'I-tim', 'O'}
 
