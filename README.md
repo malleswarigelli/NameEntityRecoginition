@@ -17,7 +17,7 @@ If you want to know more about BERT, I suggest the following resources:
 
 ![NER_End to End_Architexture](https://github.com/malleswarigelli/NameEntityRecoginition/assets/84688050/99ccaee1-35f3-49b9-9492-bf4f9e8b9f00): 
 # **Downloading and preprocessing the data**
-Named entity recognition (NER) uses a specific annotation scheme **[IOB-tagging](https://en.wikipedia.org/wiki/Inside%E2%80%93outside%E2%80%93beginning_(tagging)**, which stands for Inside-Outside-Beginning. Each tag indicates whether the corresponding word is *inside*, *outside* or at the *beginning* of a specific named entity. The reason this is used is because named entities usually comprise more than 1 word. 
+Named entity recognition (NER) uses a specific annotation scheme [IOB-tagging](https://en.wikipedia.org/wiki/Inside%E2%80%93outside%E2%80%93beginning_(tagging)), which stands for Inside-Outside-Beginning. Each tag indicates whether the corresponding word is *inside*, *outside* or at the *beginning* of a specific named entity. The reason this is used is because named entities usually comprise more than 1 word. 
 
 - Let's have a look at an example. If you have a sentence like "Barack Obama was born in Hawaï", then the corresponding tags would be   [B-PERS, I-PERS, O, O, O, B-GEO]. B-PERS means that the word "Barack" is the beginning of a person, I-PERS means that the word "Obama" is inside a person, "O" means that the word "was" is outside a named entity, and so on. So one typically has as many tags as there are words in a sentence.
 
